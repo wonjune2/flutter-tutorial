@@ -9,7 +9,26 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return MaterialApp(
+      home: Row(
+        children: const [
+          Text(
+            'data1',
+            style: TextStyle(
+              fontSize: 25,
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Text(
+              'data2',
+              style: TextStyle(
+                fontSize: 25,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
