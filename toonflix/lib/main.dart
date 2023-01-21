@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toonflix/screens/home_screen.dart';
 
 void main() async {
   runApp(const App());
@@ -10,25 +11,16 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Row(
-        children: const [
-          Text(
-            'data1',
-            style: TextStyle(
-              fontSize: 25,
-            ),
+      theme: ThemeData(
+        backgroundColor: const Color(0xFFE7626C),
+        textTheme: const TextTheme(
+          headline1: TextStyle(
+            color: Color(0xFF232B55),
           ),
-          Flexible(
-            flex: 1,
-            child: Text(
-              'data2',
-              style: TextStyle(
-                fontSize: 25,
-              ),
-            ),
-          ),
-        ],
+        ),
+        cardColor: const Color(0xFFF4EDDB),
       ),
+      home: const HomeScreen(),
     );
   }
 }
