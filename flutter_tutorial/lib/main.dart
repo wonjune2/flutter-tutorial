@@ -3,40 +3,35 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(const Center(
     child: MaterialApp(
-      title: 'Flutter Tutorial',
-      home: TutorialHome(),
+      home: Scaffold(
+        body: Center(
+          child: MyButton(),
+        ),
+      ),
     ),
   ));
 }
 
-class TutorialHome extends StatelessWidget {
-  const TutorialHome({super.key});
+class MyButton extends StatelessWidget {
+  const MyButton({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: const IconButton(
-          icon: Icon(Icons.menu),
-          tooltip: 'Navigation menu',
-          onPressed: null,
+    return GestureDetector(
+      onTap: () {
+        print('MyButton was tapped!');
+      },
+      child: Container(
+        height: 50,
+        padding: const EdgeInsets.all(8.0),
+        margin: const EdgeInsets.symmetric(horizontal: 8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5.0),
+          color: Colors.lightGreen[500],
         ),
-        title: const Text('Example title'),
-        actions: const [
-          IconButton(
-            onPressed: null,
-            icon: Icon(Icons.search),
-            tooltip: 'Search',
-          ),
-        ],
-      ),
-      body: const Center(
-        child: Text('Hello World'),
-      ),
-      floatingActionButton: const FloatingActionButton(
-        tooltip: 'Add',
-        onPressed: null,
-        child: Icon(Icons.add),
+        child: const Center(
+          child: Text('Engage'),
+        ),
       ),
     );
   }
