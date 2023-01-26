@@ -31,11 +31,7 @@ class MyApp extends StatelessWidget {
               ],
             ),
           ),
-          Icon(
-            Icons.star,
-            color: Colors.red[500],
-          ),
-          const Text('41')
+          const FavoriteWeget(),
         ],
       ),
     );
@@ -108,14 +104,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class FaboriteWidget extends StatefulWidget {
-  const FaboriteWidget({super.key});
+class FavoriteWeget extends StatefulWidget {
+  const FavoriteWeget({super.key});
 
   @override
-  State<FaboriteWidget> createState() => _FaboriteWidgetState();
+  State<FavoriteWeget> createState() => _FaboriteWidgetState();
 }
 
-class _FaboriteWidgetState extends State<FaboriteWidget> {
+class _FaboriteWidgetState extends State<FavoriteWeget> {
   bool _isFavorited = true;
   int _favoriteCount = 41;
 
@@ -142,8 +138,9 @@ class _FaboriteWidgetState extends State<FaboriteWidget> {
             padding: const EdgeInsets.all(0),
             alignment: Alignment.centerRight,
             onPressed: _toggleFavorite,
+            color: Colors.red,
             icon: _isFavorited
-                ? const Icon(Icons.start)
+                ? const Icon(Icons.star)
                 : const Icon(Icons.star_border),
           ),
         ),
