@@ -1,3 +1,4 @@
+import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -7,77 +8,42 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  Widget box(Color color) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(width: 1, color: color),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: Center(),
+      title: 'Namer App',
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
+      home: MyHomePage(),
     );
   }
 }
 
-class ParentWidget extends StatefulWidget {
-  const ParentWidget({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
 
   @override
-  State<ParentWidget> createState() => _ParentWidgetState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _ParentWidgetState extends State<ParentWidget> {
-  bool _active = false;
-
-  void _handleTapboxChanged(bool newValue) {
-    setState(() {
-      _active = newValue;
-    });
-  }
-
+class _MyHomePageState extends State<MyHomePage> {
+  var current = WordPair.random();
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: TapboxB(
-        active: _active,
-        onChanged: _handleTapboxChanged,
-      ),
-    );
-  }
-}
-
-class TapboxB extends StatelessWidget {
-  const TapboxB({super.key, this.active = false, required this.onChanged});
-
-  final bool active;
-  final ValueChanged<bool> onChanged;
-
-  void _handleTap() {
-    onChanged(!active);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _handleTap,
-      child: Container(
-        width: 200.0,
-        height: 200.0,
-        decoration: BoxDecoration(
-          color: active ? Colors.lightGreen[700] : Colors.grey[600],
-        ),
-        child: Center(
-          child: Text(
-            active ? 'Active' : 'Inactive',
-            style: TextStyle(fontSize: 32.0, color: Colors.white),
+    return Scaffold(
+      body: Column(
+        children: [
+          Text('A random idea'),
+          Text(current.asLowerCase),
+          ElevatedButton(
+            onPressed: () {
+              print('button pressed!');
+            },
+            child: Text('Next'),
           ),
-        ),
+        ],
       ),
     );
   }
