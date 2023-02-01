@@ -1,43 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:flutter_application_1/home_page.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(const DemoApp());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class DemoApp extends StatefulWidget {
+  const DemoApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: "Theme",
-        theme: FlexThemeData.light(scheme: FlexScheme.mandyRed),
-        home: MyPage());
+  State<DemoApp> createState() => _DemoAppState();
+}
+
+class _DemoAppState extends State<DemoApp> {
+  ThemeMode themeMode = ThemeMode.light;
+
+  void onThemeModeChanged(ThemeMode mode) {
+    setState(() {
+      if (mode == ThemeMode.light) {
+        themeMode = ThemeMode.dark;
+      } else {
+        themeMode = ThemeMode.light;
+      }
+    });
   }
-}
-
-class MyPage extends StatelessWidget {
-  const MyPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Theme Text'),
-        ),
-        body: Center(
-          child: Container(
-            width: 100,
-            height: 100,
-            decoration: BoxDecoration(
-              border: Border.all(),
-            ),
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: null,
-          child: Icon(Icons.add),
-        ));
+    // Select the predefined FlexScheme color scheme to use. Modify the
+    // used FlexScheme enum value below to try other pre-made color schemes.
+    const FlexScheme usedScheme = FlexScheme.gold;
+
+    return MaterialApp(
+      debugShowCheckedModeBanner: true,
+      title: 'Basic Theme Usage',
+      theme: FlexThemeData.light(
+        scheme: usedScheme,
+        appBarElevation: 0.5,
+      ),
+      darkTheme: FlexThemeData.dark(
+        scheme: usedScheme,
+        appBarElevation: 2,
+      ),
+      themeMode: themeMode,
+      home: HomePage(
+          themeMode: themeMode,
+          onThemeModeChanged: onThemeModeChanged,
+          flexSchemeData: usedScheme),
+    );
   }
 }
