@@ -32,8 +32,29 @@ class HomePage extends StatelessWidget {
         body: Column(
           children: [
             Text('This is the home page'),
-            IconButton(onPressed: _handleMode, icon: Icon(Icons.dark_mode))
+            IconButton(onPressed: _handleMode, icon: Icon(Icons.dark_mode)),
+            Box(flexSchemeData: flexSchemeData),
           ],
         ));
+  }
+}
+
+class Box extends StatelessWidget {
+  final FlexScheme flexSchemeData;
+
+  const Box({
+    super.key,
+    required this.flexSchemeData,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 50,
+      height: 50,
+      decoration: BoxDecoration(
+        border: Border.all(),
+      ),
+    );
   }
 }
