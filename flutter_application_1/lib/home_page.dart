@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
   final ThemeMode themeMode;
@@ -20,22 +21,39 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("AppBar"),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.add_alarm),
-              onPressed: null,
+      body: Container(
+        color: Theme.of(context).colorScheme.background,
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Text('한글 폰트 입니다.'),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      '한글 폰트 입니다.',
+                      style: GoogleFonts.notoSans(),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Text('한글 폰트 입니다.'),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
-        body: Column(
-          children: [
-            Text('This is the home page'),
-            IconButton(onPressed: _handleMode, icon: Icon(Icons.dark_mode)),
-            Box(flexSchemeData: flexSchemeData),
-          ],
-        ));
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
+    );
   }
 }
 
@@ -53,6 +71,7 @@ class Box extends StatelessWidget {
       width: 50,
       height: 50,
       decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.primaryContainer,
         border: Border.all(),
       ),
     );

@@ -28,24 +28,30 @@ class _DemoAppState extends State<DemoApp> {
   Widget build(BuildContext context) {
     // Select the predefined FlexScheme color scheme to use. Modify the
     // used FlexScheme enum value below to try other pre-made color schemes.
-    const FlexScheme usedScheme = FlexScheme.gold;
+    const FlexScheme usedScheme = FlexScheme.damask;
 
     return MaterialApp(
       debugShowCheckedModeBanner: true,
       title: 'Basic Theme Usage',
       theme: FlexThemeData.light(
+        useMaterial3: true,
+        swapLegacyOnMaterial3: true,
         scheme: usedScheme,
         appBarElevation: 0.5,
+        // fontFamily: GoogleFonts.notoSans().fontFamily,
       ),
       darkTheme: FlexThemeData.dark(
+        useMaterial3: true,
+        swapLegacyOnMaterial3: true,
         scheme: usedScheme,
         appBarElevation: 2,
       ),
       themeMode: themeMode,
       home: HomePage(
-          themeMode: themeMode,
-          onThemeModeChanged: onThemeModeChanged,
-          flexSchemeData: usedScheme),
+        themeMode: themeMode,
+        onThemeModeChanged: onThemeModeChanged,
+        flexSchemeData: usedScheme,
+      ),
     );
   }
 }
