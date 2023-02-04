@@ -47,11 +47,7 @@ class _DemoAppState extends State<DemoApp> {
         appBarElevation: 2,
       ),
       themeMode: themeMode,
-      home: HomePage(
-        themeMode: themeMode,
-        onThemeModeChanged: onThemeModeChanged,
-        flexSchemeData: usedScheme,
-      ),
+      home: MyNavigation(),
     );
   }
 }
