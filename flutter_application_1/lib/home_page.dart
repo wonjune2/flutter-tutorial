@@ -1,125 +1,98 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screens/animation_screen.dart';
-import 'dart:math';
 
-class MyNavigation extends StatefulWidget {
-  const MyNavigation({super.key});
+import 'package:flutter_application_1/screens/pages/home_page.dart';
+import 'package:flutter_application_1/screens/pages/seconds_page.dart';
+import 'package:flutter_application_1/screens/pages/third_page.dart';
+
+class MainPage extends StatefulWidget {
+  const MainPage({super.key});
 
   @override
-  State<MyNavigation> createState() => _MyNavigationState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class _MyNavigationState extends State<MyNavigation> {
+class _MainPageState extends State<MainPage> {
   int currentPageIndex = 0;
-  void onDestinationSelected(int index) {
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController(initialPage: 0);
+  }
+
+  void _handlePage(int index) {
     setState(() {
       currentPageIndex = index;
     });
+    if (_pageController.hasClients) {
+      _pageController.jumpToPage(index);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: onDestinationSelected,
-        selectedIndex: currentPageIndex,
-        destinations: [
-          NavigationDestination(
-              icon: Icon(Icons.home_outlined),
-              label: 'Explore',
-              selectedIcon: Icon(Icons.home)),
-          NavigationDestination(icon: Icon(Icons.commute), label: 'Commute'),
-          NavigationDestination(
-              icon: Icon(Icons.bookmark_border), label: 'Saved'),
-        ],
+      bottomNavigationBar: MyBottomNavigationBar(
+        index: currentPageIndex,
+        onChangePage: _handlePage,
       ),
-      body: Container(
-        color: Theme.of(context).colorScheme.background,
-        child: [
-          Container(
-            color: Colors.green,
-            child: FadeInDemo(),
-          ),
-          Container(
-            color: Colors.black,
-            child: AnimatedContainerDemo(),
-          ),
-          Container(
-            color: Colors.blue,
-            child: Text('home'),
-          )
-        ][currentPageIndex],
+      body: MyPageView(
+        index: currentPageIndex,
+        pageController: _pageController,
       ),
     );
   }
 }
 
-double randomBorderRadius() {
-  return Random().nextDouble() * 64;
-}
+class MyBottomNavigationBar extends StatelessWidget {
+  final int index;
+  final ValueChanged<int> onChangePage;
+  MyBottomNavigationBar(
+      {super.key, required this.index, required this.onChangePage});
 
-double randomMargin() {
-  return Random().nextDouble() * 64;
-}
-
-Color randomColor() {
-  return Color(0xFFFFFFF & Random().nextInt(0xFFFFFFFF));
-}
-
-Duration _duration = Duration(milliseconds: 400);
-
-class AnimatedContainerDemo extends StatefulWidget {
-  const AnimatedContainerDemo({super.key});
-
-  @override
-  State<AnimatedContainerDemo> createState() => _AnimatedContainerDemoState();
-}
-
-class _AnimatedContainerDemoState extends State<AnimatedContainerDemo> {
-  late Color color;
-  late double borderRadius;
-  late double margin;
-
-  @override
-  void initState() {
-    super.initState();
-    color = randomColor();
-    borderRadius = randomBorderRadius();
-    margin = randomMargin();
-  }
-
-  void change() {
-    setState(() {
-      color = randomColor();
-      borderRadius = randomBorderRadius();
-      margin = randomMargin();
-    });
+  void onDestinationSelected(int index) {
+    onChangePage(index);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          SizedBox(
-            width: 128,
-            height: 128,
-            child: AnimatedContainer(
-              curve: Curves.easeInOutBack,
-              duration: _duration,
-              margin: EdgeInsets.all(margin),
-              decoration: BoxDecoration(
-                color: color,
-                borderRadius: BorderRadius.circular(borderRadius),
-              ),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: change,
-            child: Text('Change'),
-          )
-        ],
-      ),
+    return NavigationBar(
+      onDestinationSelected: onDestinationSelected,
+      selectedIndex: index,
+      destinations: [
+        NavigationDestination(
+          icon: Icon(Icons.home_outlined),
+          label: 'Explore',
+          selectedIcon: Icon(Icons.home),
+        ),
+        NavigationDestination(
+          icon: Icon(Icons.commute),
+          label: 'Commute',
+        ),
+        NavigationDestination(
+          icon: Icon(Icons.bookmark_border),
+          label: 'Saved',
+        ),
+      ],
+    );
+  }
+}
+
+class MyPageView extends StatelessWidget {
+  final int index;
+  final PageController pageController;
+  MyPageView({super.key, required this.index, required this.pageController});
+
+  @override
+  Widget build(BuildContext context) {
+    return PageView(
+      controller: pageController,
+      children: [
+        MyHomePage(),
+        MySecondsPage(),
+        MyThirdPage(),
+      ],
     );
   }
 }
