@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/animation_screen.dart';
 
 class MySecondsPage extends StatelessWidget {
   MySecondsPage({super.key});
@@ -6,7 +7,7 @@ class MySecondsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('SecondsPage'),
+      child: LogoApp(),
     );
   }
 }
