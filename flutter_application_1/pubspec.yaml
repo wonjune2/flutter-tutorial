@@ -45,3 +45,12 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: NotoSansKR
+      fonts:
+        - asset: fonts/NotoSansKR/NotoSansKR-Medium.otf
+        - asset: fonts/NotoSansKR/NotoSansKR-Regular.otf
+        - asset: fonts/NotoSansKR/NotoSansKR-Bold.otf
+        - asset: fonts/NotoSansKR/NotoSansKR-Black.otf
+        - asset: fonts/NotoSansKR/NotoSansKR-Light.otf
+        - asset: fonts/NotoSansKR/NotoSansKR-Thin.otf

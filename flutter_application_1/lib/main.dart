@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
-import 'package:flutter_application_1/home_page.dart';
+import 'package:flutter_application_1/screens/main_screen.dart';
 
-void main() => runApp(const DemoApp());
+void main() {
+  // debugPaintSizeEnabled = true; // Remove to suppress visual layout
+  runApp(const DemoApp());
+}
 
 class DemoApp extends StatefulWidget {
   const DemoApp({super.key});
@@ -38,13 +41,14 @@ class _DemoAppState extends State<DemoApp> {
         swapLegacyOnMaterial3: true,
         scheme: usedScheme,
         appBarElevation: 0.5,
-        // fontFamily: GoogleFonts.notoSans().fontFamily,
+        fontFamily: 'NotoSansKR',
       ),
       darkTheme: FlexThemeData.dark(
         useMaterial3: true,
         swapLegacyOnMaterial3: true,
         scheme: usedScheme,
         appBarElevation: 2,
+        fontFamily: 'NotoSansKR',
       ),
       themeMode: themeMode,
       home: MainPage(),
