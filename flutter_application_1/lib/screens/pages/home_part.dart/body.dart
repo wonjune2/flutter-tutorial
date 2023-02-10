@@ -5,8 +5,22 @@ class ContentBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Theme.of(context).colorScheme.primaryContainer,
-    );
+    return Card(
+        child: Column(
+      children: [
+        Expanded(
+          flex: 2,
+          child: Container(),
+        ),
+        Expanded(
+          flex: 6,
+          child: Container(),
+        ),
+        Expanded(
+          flex: 2,
+          child: Container(),
+        ),
+      ],
+    ));
   }
 }

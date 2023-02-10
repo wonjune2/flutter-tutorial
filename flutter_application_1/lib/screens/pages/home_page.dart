@@ -13,7 +13,7 @@ class MyHomePage extends StatelessWidget {
           flex: 1,
         ),
         Expanded(
-          flex: 15,
+          flex: 25,
           child: Column(
             children: [
               Expanded(

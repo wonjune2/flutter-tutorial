@@ -87,7 +87,7 @@ class MyPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Theme.of(context).colorScheme.onPrimary,
+      color: Theme.of(context).colorScheme.background,
       child: PageView(
         controller: pageController,
         children: [

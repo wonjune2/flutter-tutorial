@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_application_1/screens/main_screen.dart';
 
 void main() {
-  // debugPaintSizeEnabled = true; // Remove to suppress visual layout
+  debugPaintSizeEnabled = true; // Remove to suppress visual layout
   runApp(const DemoApp());
 }
 
