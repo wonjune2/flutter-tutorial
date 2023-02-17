@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_project1/demo_app.dart';
+import 'package:my_project1/widgets/screens/main_screen.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 void main() {
@@ -15,19 +15,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // Used to select if we use the dark or light theme, start with system mode.
-  ThemeMode themeMode = ThemeMode.light;
-  int counter = 0;
-  void incrementCounter(int count) {
-    setState(() {
-      counter = count + 1;
-    });
-  }
-
-  void onThemeModeChanged(ThemeMode mode) {
-    setState(() {
-      themeMode = mode;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,23 +29,15 @@ class _MyAppState extends State<MyApp> {
         scheme: usedScheme,
         // Use very subtly themed app bar elevation in light mode.
         appBarElevation: 0.5,
+        useMaterial3: true,
       ),
       darkTheme: FlexThemeData.dark(
         scheme: usedScheme,
         // Use a bit more themed elevated app bar in dark mode.
         appBarElevation: 2,
+        useMaterial3: true,
       ),
-      themeMode: themeMode,
-
-      home: MyHomePage(
-        title: 'Flutter Demo Home Page',
-        themeMode: themeMode,
-        onThemeModeChanged: onThemeModeChanged,
-        flexSchemeData: FlexColor.schemes[usedScheme]!,
-        // my settings
-        incrementCounter: incrementCounter,
-        counter: counter,
-      ),
+      home: const MainScreen(),
     );
   }
 }
