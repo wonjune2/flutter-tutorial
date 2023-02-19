@@ -3,6 +3,7 @@ import 'package:my_project1/widgets/screens/main_screen.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 void main() {
+  // debugPaintSizeEnabled = true;
   runApp(const MyApp());
 }
 

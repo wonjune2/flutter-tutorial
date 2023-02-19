@@ -1,49 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:animations/animations.dart';
+import 'package:my_project1/widgets/screens/pages/home.dart';
 
-class MyHome extends StatefulWidget {
-  const MyHome({super.key});
-
-  @override
-  State<MyHome> createState() => _MyHomeState();
-}
-
-class _MyHomeState extends State<MyHome> {
-  int currentPageIndex = 0;
-
+class MyPages extends StatelessWidget {
+  const MyPages({super.key, required this.index});
+  final int index;
   @override
   Widget build(BuildContext context) {
-    return PageTransitionSwitcher(
-      transitionBuilder: (
-        Widget child,
-        Animation<double> primaryAnimation,
-        Animation<double> secondaryAnimation,
-      ) {
-        return SlideTransition(
-          position: Tween<Offset>(
-            begin: Offset.zero,
-            end: const Offset(1.5, 0.0),
-          ).animate(secondaryAnimation),
-          child: FadeTransition(
-            opacity: Tween<double>(
-              begin: 0.0,
-              end: 1.0,
-            ).animate(primaryAnimation),
-            child: child,
-          ),
-        );
-      },
-      child: [
-        Container(
-          child: const Text('one'),
-        ),
-        Container(
-          child: const Text('two'),
-        ),
-        Container(
-          child: const Text('three'),
-        ),
-      ][currentPageIndex],
+    return Container(
+      child: <Widget>[
+        const MyHome(),
+        const Text('2'),
+        const Text('3'),
+      ][index],
     );
   }
 }

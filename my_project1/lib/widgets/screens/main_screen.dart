@@ -1,5 +1,5 @@
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:my_project1/widgets/screens/page_view.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -10,54 +10,23 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int currentPageIndex = 0;
-  void onChangePage(int index) {
-    setState(() {
-      currentPageIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('AppBar'),
-      ),
-      body: Center(
-        child: PageTransitionSwitcher(
-          transitionBuilder: (
-            Widget child,
-            Animation<double> primaryAnimation,
-            Animation<double> secondaryAnimation,
-          ) {
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: Offset.zero,
-                end: const Offset(1.5, 0.0),
-              ).animate(secondaryAnimation),
-              child: SlideTransition(
-                position: Tween<Offset>(
-                  begin: const Offset(-1.5, 0.0),
-                  end: Offset.zero,
-                ).animate(primaryAnimation),
-                child: child,
-              ),
-            );
-          },
-          child: [
-            Container(
-              key: const Key('0'),
-              child: const Text('oneasdasdassssssssss'),
-            ),
-            Container(
-              key: const Key('1'),
-              child: const Text('adasdddddddddddddddddddddddd'),
-            ),
-            Container(
-              key: const Key('2'),
-              child: const Text('threeasdasdassssssss'),
-            ),
-          ][currentPageIndex],
-        ),
+      body: Row(
+        children: [
+          const Spacer(
+            flex: 1,
+          ),
+          Expanded(
+            flex: 50,
+            child: MyPages(index: currentPageIndex),
+          ),
+          const Spacer(
+            flex: 1,
+          ),
+        ],
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (index) {
